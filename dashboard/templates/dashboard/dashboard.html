@@ -1,47 +1,62 @@
-<h1>Roommates Tracker</h1>
-<form method="POST">
-  {% csrf_token %}
-  <label for="student_id">Enter Your Student ID:</label>
-  <input type="text" name="student_id" />
-  <button type="submit">View Dashboard</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Roommates Tracker</title>
+    http://127.0.0.1:8000/<link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
 
-{% if not student and not error %}
-  <p>Please enter your Student ID to view your dashboard.</p>
-{% endif %}
-{% if student %}
-  <h2>Room: {{ room.block }} {{ room.number }}</h2>
+    <h1>Roommates Tracker</h1>
+    <form method="POST">
+      {% csrf_token %}
+      <label for="student_id">Enter Your Student ID:</label>
+      <input type="text" name="student_id" />
+      <button type="submit">View Dashboard</button>
+    </form>
 
-  <div class="roommate-card">
-    <h3>{{ student.full_name }} (You)</h3>
-    <p>Cleaning: {{ student.cleaning_status }}</p>
-    <p>Last activity: {{ student.last_activity }}</p>
-    <p>Badge: {{ student.badge }}</p>
-  </div>
+    {% if not student and not error %}
+      <p>Please enter your Student ID to view your dashboard.</p>
+    {% endif %}
 
-  {% for mate in roommates %}
-    <div class="roommate-card">
-      <h3>{{ mate.full_name }}</h3>
-      <p>Cleaning: {{ mate.cleaning_status }}</p>
-      <p>Last activity: {{ mate.last_activity }}</p>
-      <p>Badge: {{ mate.badge }}</p>
-    </div>
-  {% endfor %}
+    {% if student %}
+      <h2>Room: {{ room.block }} {{ room.number }}</h2>
 
-  <h3>Room Agreements</h3>
-  <ul>
-    <li>No loud music after 9pm</li>
-    <li>Visitors allowed only with consent</li>
-    <li>Respect study hours: 10pm–6am</li>
-    <li>Clean shared space every Saturday</li>
-  </ul>
+      <div class="roommate-card">
+        <h3>{{ student.full_name }} (You)</h3>
+        <p>Cleaning: {{ student.cleaning_status }}</p>
+        <p>Last activity: {{ student.last_activity }}</p>
+        <p>Badge: {{ student.badge }}</p>
+      </div>
 
-  <h3>Feedback</h3>
-  <textarea placeholder="Write your thoughts..."></textarea>
-  <button>Submit Feedback</button>
+      {% for mate in roommates %}
+        <div class="roommate-card">
+          <h3>{{ mate.full_name }}</h3>
+          <p>Cleaning: {{ mate.cleaning_status }}</p>
+          <p>Last activity: {{ mate.last_activity }}</p>
+          <p>Badge: {{ mate.badge }}</p>
+        </div>
+      {% endfor %}
 
-  <h3>Harmony Score</h3>
-  <div class="score-bar">🟡 Mixed – Needs Improvement</div>
-{% elif error %}
-  <p style="color:red;">{{ error }}</p>
-{% endif %}
+      <h3>Room Agreements</h3>
+      <ul>
+        <li>No loud music</li>
+        <li>Visitors allowed only with consent</li>
+        <li>Respect study hours </li>
+        <li>Clean shared space every Saturday</li>
+      </ul>
+
+      <h3>Feedback</h3>
+      <textarea placeholder="Write your thoughts..."></textarea>
+      <button>Submit Feedback</button>
+
+      <h3>Harmony Score</h3>
+      <div class="score-bar"> Mixed Needs Improvement</div>
+
+    {% elif error %}
+      <p style="color:red;">{{ error }}</p>
+    {% endif %}
+
+</body>
+</html>
