@@ -1,91 +1,101 @@
+/* 🔹 General Page Styling */
 body {
-  font-family: 'Georgia', serif;
-  background-color: #fdfdfd;
-  color: #333;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f6f8;
   margin: 0;
-  padding: 40px;
-  line-height: 1.6;
+  padding: 20px;
+  color: #2c3e50;
 }
 
 h1, h2, h3 {
-  text-align: center;
-  color: #2c3e50;
+  color: #34495e;
+  margin-bottom: 10px;
+}
+
+p, li {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* 🔹 Form Styling */
+form {
   margin-bottom: 20px;
 }
 
-form {
-  text-align: center;
-  margin-bottom: 30px;
+label {
+  font-weight: bold;
 }
 
-input[type="text"] {
-  padding: 10px;
-  width: 280px;
-  border: 1px solid #aaa;
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 16px;
 }
 
 button {
-  padding: 10px 20px;
   background-color: #2c3e50;
   color: white;
+  padding: 8px 16px;
   border: none;
   border-radius: 4px;
-  font-size: 16px;
   cursor: pointer;
 }
 
 button:hover {
-  background-color: #1a2733;
+  background-color: #1a252f;
 }
 
+/* 🔹 Roommate Cards */
 .roommate-card {
-  background-color: #f7f7f7;
-  border-left: 4px solid #2c3e50;
-  padding: 15px;
-  margin: 20px auto;
-  width: 80%;
+  background-color: #ffffff;
+  border: 1px solid #dcdcdc;
+  padding: 12px;
+  margin-bottom: 10px;
   border-radius: 6px;
   box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 
-.roommate-card h3 {
-  margin: 0;
-  font-size: 18px;
-  color: #2c3e50;
-}
-
-.roommate-card p {
-  margin: 6px 0;
-  color: #555;
-}
-
-ul {
-  list-style-type: disc;
-  padding-left: 40px;
-  margin-top: 20px;
-}
-
-textarea {
-  width: 80%;
-  height: 100px;
-  padding: 10px;
-  font-size: 15px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  resize: vertical;
-  margin: 10px auto;
-  display: block;
-}
-
-.score-bar {
-  text-align: center;
-  font-weight: 600;
-  background-color: #fff3cd;
-  color: #856404;
+/* 🔹 Room Overview for Warden */
+.room-card {
+  background-color: #eaf2f8;
+  border: 1px solid #b3cde0;
   padding: 12px;
+  margin-bottom: 15px;
   border-radius: 6px;
-  margin: 30px auto;
-  width: 60%;
+}
+
+.room-card h3 {
+  margin-top: 0;
+}
+
+/* 🔹 Feedback Section */
+.feedback-card {
+  background-color: #fff8e1;
+  border: 1px solid #f0c36d;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+}
+
+/* 🔹 Harmony Score */
+.score-bar {
+  padding: 10px;
+  background-color: #dff0d8;
+  border: 1px solid #b2dba1;
+  border-radius: 4px;
+  font-weight: bold;
+  color: #3c763d;
+  margin-top: 10px;
+}
+
+/* 🔹 Error Message */
+p[style*="color:red"] {
+  background-color: #f8d7da;
+  padding: 8px;
+  border-radius: 4px;
+  font-weight: bold;
 }

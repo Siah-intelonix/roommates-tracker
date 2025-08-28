@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Roommates Tracker</title>
-    http://127.0.0.1:8000/<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
 
@@ -21,7 +21,10 @@
     {% endif %}
 
     {% if student %}
-      <h2>Room: {{ room.block }} {{ room.number }}</h2>
+      <h2>Room Details</h2>
+      <p><strong>Block:</strong> {{ block.name }}</p>
+      <p><strong>Floor:</strong> {{ floor.number }}</p>
+      <p><strong>Room:</strong> {{ room.number }}</p>
 
       <div class="roommate-card">
         <h3>{{ student.full_name }} (You)</h3>
@@ -39,20 +42,37 @@
         </div>
       {% endfor %}
 
+      <h3>Today's Cleaning Turn</h3>
+      <p><strong>{{ today_turn.full_name }}</strong> is responsible for cleaning today.</p>
+
+      {% if is_my_turn %}
+        <form method="POST" action="{% url 'mark_cleaning_done' %}">
+          {% csrf_token %}
+          <input type="hidden" name="student_id" value="{{ student.student_id }}">
+          <button type="submit">Mark as Done</button>
+        </form>
+      {% else %}
+        <p>You are not on duty today.</p>
+      {% endif %}
+
       <h3>Room Agreements</h3>
       <ul>
         <li>No loud music</li>
         <li>Visitors allowed only with consent</li>
-        <li>Respect study hours </li>
+        <li>Respect study hours</li>
         <li>Clean shared space every Saturday</li>
       </ul>
 
       <h3>Feedback</h3>
-      <textarea placeholder="Write your thoughts..."></textarea>
-      <button>Submit Feedback</button>
+      <form method="POST" action="{% url 'submit_feedback' %}">
+        {% csrf_token %}
+        <textarea name="message" placeholder="Write your thoughts..."></textarea>
+        <input type="hidden" name="student_id" value="{{ student.student_id }}">
+        <button type="submit">Submit Feedback</button>
+      </form>
 
       <h3>Harmony Score</h3>
-      <div class="score-bar"> Mixed Needs Improvement</div>
+      <div class="score-bar">Mixed – Needs Improvement</div>
 
     {% elif error %}
       <p style="color:red;">{{ error }}</p>
