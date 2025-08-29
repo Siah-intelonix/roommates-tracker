@@ -17,7 +17,7 @@ class Floor(models.Model):
 
 # 🔹 Room model: kila floor ina vyumba viwili (mfano: 101, 102)
 class Room(models.Model):
-    floor = models.ForeignKey(Floor, on_delete=models.CASCADE)
+    floor = models.ForeignKey(Floor, on_delete=models.CASCADE, null=True)
     number = models.CharField(max_length=10)  # e.g. "101", "102"
 
     def __str__(self):
@@ -27,7 +27,8 @@ class Room(models.Model):
 class Student(models.Model):
     student_id = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=6, choices=[("male", "Male"), ("female", "Female")])
+    gender = models.CharField(max_length=6, choices=[("male", "Male"), ("female", "Female")],
+                           default="unknown" )
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='students')
     cleaning_status = models.CharField(max_length=20, choices=[('done', '✔️ Completed'), ('pending', '❌ Not done')])
     last_activity = models.CharField(max_length=50)
