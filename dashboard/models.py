@@ -27,10 +27,16 @@ class Room(models.Model):
 class Student(models.Model):
     student_id = models.CharField(max_length=10, unique=True)
     full_name = models.CharField(max_length=100)
-    gender = models.CharField(max_length=6, choices=[("male", "Male"), ("female", "Female")],
-                           default="unknown" )
+    gender = models.CharField(
+        max_length=6,
+        choices=[("male", "Male"), ("female", "Female")],
+        default="unknown"
+    )
     room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name='students')
-    cleaning_status = models.CharField(max_length=20, choices=[('done', '✔️ Completed'), ('pending', '❌ Not done')])
+    cleaning_status = models.CharField(
+        max_length=20,
+        choices=[('done', '✔️ Completed'), ('pending', '❌ Not done')]
+    )
     last_activity = models.CharField(max_length=50)
     badge = models.CharField(max_length=50, blank=True)
     rotation_order = models.IntegerField()
